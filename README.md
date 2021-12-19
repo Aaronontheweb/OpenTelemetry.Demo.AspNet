@@ -1,6 +1,8 @@
 # OpenTelemetry.Demo.AspNet
 A simple ASP.NET demo of OpenTelemetry tracing in .NET 6+
 
+**Explaination for how this sample works and what to pay attention to will be forthcoming on https://aaronstannard.com/**
+
 To run this sample...
 
 ### Start Jaeger
