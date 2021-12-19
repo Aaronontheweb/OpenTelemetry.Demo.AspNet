@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:1.22
+    hostname: jaeger
+    restart: always
+    ports:
+      - '16686:16686'
+      - '5775:5775/udp'
+      - '6831:6831/udp'
+      - '6832:6832/udp'
+      - '5778:5778'
+      - '9411:9411'
