@@ -7,11 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenTelemetry.Api" Version="1.2.0" />
-    <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.2.0" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc8" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc8" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc8" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.0.0-rc8" />
+    <PackageReference Include="OpenTelemetry.Api" Version="$(OTelVersion)" />
+    <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="$(OTelVersion)" />
+    <PackageReference Include="OpenTelemetry.Exporter.Prometheus" Version="$(OTelVersion)"/>
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="$(OTelInstrumentationVersion)" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OTelInstrumentationVersion)" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="$(OTelInstrumentationVersion)" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="$(OTelInstrumentationVersion)" />
   </ItemGroup>
 </Project>
