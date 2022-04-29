@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="OpenTelemetry.Api" Version="$(OTelVersion)" />
     <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="$(OTelVersion)" />
-    <PackageReference Include="OpenTelemetry.Exporter.Prometheus" Version="$(OTelVersion)"/>
+    <PackageReference Include="OpenTelemetry.Exporter.Prometheus" Version="1.2.0-rc5"/>
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="$(OTelInstrumentationVersion)" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OTelInstrumentationVersion)" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="$(OTelInstrumentationVersion)" />
