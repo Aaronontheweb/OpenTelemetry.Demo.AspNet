@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <OTelVersion>1.2.0</OTelVersion>
+    <OTelInstrumentationVersion>1.0.0-rc9.2</OTelInstrumentationVersion>
+  </PropertyGroup>
+</Project>

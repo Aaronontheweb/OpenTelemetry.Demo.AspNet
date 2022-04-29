@@ -1,4 +1,5 @@
 using OpenTelemetry.Demo.AspNet;
+using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
@@ -7,23 +8,40 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+// shared Resource to use for both OTel metrics AND tracing
+var resource = ResourceBuilder.CreateDefault().AddService("AspNet", "Demo");
+
 builder.Services.AddOpenTelemetryTracing(b =>
 {
     // uses the default Jaeger settings
     b.AddJaegerExporter();
     
     // receive traces from our own custom sources
-    b.AddSource(TelemetryConstants.MyAppTraceSource);
+    b.AddSource(TelemetryConstants.MyAppSource);
     
     // decorate our service name so we can find it when we look inside Jaeger
-    b.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("AspNet", "Demo"));
+    b.SetResourceBuilder(resource);
     
     // receive traces from built-in sources
     b.AddHttpClientInstrumentation();
     b.AddAspNetCoreInstrumentation();
     b.AddSqlClientInstrumentation();
+});
+
+builder.Services.AddOpenTelemetryMetrics(b =>
+{
+    // add prometheus exporter
+    b.AddPrometheusExporter();
     
+    // receive metrics from our own custom sources
+    b.AddMeter(TelemetryConstants.MyAppSource);
     
+    // decorate our service name so we can find it when we look inside Prometheus
+    b.SetResourceBuilder(resource);
+    
+    // receive metrics from built-in sources
+    b.AddHttpClientInstrumentation();
+    b.AddAspNetCoreInstrumentation();
 });
 
 var app = builder.Build();
@@ -39,6 +57,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+// add the /metrics endpoint which will be scraped by Prometheus
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 app.UseRouting();
 
